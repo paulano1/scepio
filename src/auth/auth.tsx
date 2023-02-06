@@ -8,7 +8,7 @@ import Checkbox from '@mui/material/Checkbox';
 import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
-//import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import GoogleButton from 'react-google-button';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
@@ -24,7 +24,7 @@ function Copyright(props: any) {
       {'Copyright © '}
       <Link
         color='inherit'
-        href='https://mui.com/'
+        href='https://github.com/paulano1/scepio'
       >
         Scepio Tree Hacks
       </Link>{' '}
@@ -34,7 +34,13 @@ function Copyright(props: any) {
   );
 }
 
-const theme = createTheme();
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: '#4c8bf5',
+    },
+  },
+});
 
 export function SignIn() {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -61,8 +67,7 @@ export function SignIn() {
             alignItems: 'center',
           }}
         >
-          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-          </Avatar>
+          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}></Avatar>
           <Typography
             component='h1'
             variant='h5'
@@ -104,15 +109,35 @@ export function SignIn() {
               }
               label='Remember me'
             />
+
             <Button
               type='submit'
               fullWidth
               variant='contained'
-              sx={{ mt: 3, mb: 2 }}
+              sx={{ mt: 1, mb: 1 }}
             >
               Sign In
             </Button>
-            <Grid container>
+            <Box
+              sx={{
+                marginTop: 2,
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+              }}
+            >
+              <GoogleButton
+                onClick={() => {
+                  console.log('Google button clicked');
+                }}
+              />
+            </Box>
+
+            <Grid container sx={
+              {
+                marginTop: 2,
+              }
+            }>
               <Grid
                 item
                 xs
