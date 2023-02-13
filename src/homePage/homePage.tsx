@@ -10,6 +10,10 @@ import { useStore } from '../store/store';
 import { shallow } from 'zustand/shallow';
 import { Box } from '@mui/system';
 import { HomePageQuestion } from './homePageQuestion';
+import ForumIcon from '@mui/icons-material/Forum';
+import HomeIcon from '@mui/icons-material/Home';
+import MonitorHeartIcon from '@mui/icons-material/MonitorHeart';
+import ProgressCircle from './progressCircle';
 
 
 const selector = (state: {
@@ -54,6 +58,14 @@ export function HomePage() {
             backgroundColor: '#FFFF',
           }}
         >
+          <div
+            style={{
+              fontFamily: 'Alegreya',
+              fontSize: '25px',
+            }}
+          >
+            Welcome back, {userName}!
+          </div>
           <Avatar
             sx={{
               m: 1,
@@ -63,36 +75,9 @@ export function HomePage() {
             }}
           ></Avatar>
         </Box>
-        <div
-          style={{
-            fontFamily: 'Alegreya',
-            fontSize: '20px',
-          }}
-        >
-          Welcome back, {userName}!
-        </div>
-        <HomePageQuestion />
 
-        <BottomNavigation
-          showLabels
-          value={value}
-          onChange={(event, newValue) => {
-            setValue(newValue);
-          }}
-        >
-          <BottomNavigationAction
-            label='Recents'
-            icon={<RestoreIcon />}
-          />
-          <BottomNavigationAction
-            label='Favorites'
-            icon={<FavoriteIcon />}
-          />
-          <BottomNavigationAction
-            label='Nearby'
-            icon={<LocationOnIcon />}
-          />
-        </BottomNavigation>
+        <HomePageQuestion />
+        <ProgressCircle />
       </Container>
     </ThemeProvider>
   );

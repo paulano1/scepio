@@ -22,7 +22,7 @@ export const HomePageQuestion = () => {
         <div
           style={{
             fontFamily: 'Alegreya',
-            fontSize: '15px',
+            fontSize: '20px',
           }}
         >
           How are you feeling today?
