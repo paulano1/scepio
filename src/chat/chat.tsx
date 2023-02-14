@@ -37,9 +37,7 @@ const configuration = new Configuration({
 const openai = new OpenAIApi(configuration);
 
 export async function fetchOpenAIDavinci(text: string) : Promise<string> {
-
-  console.log(process.env.REACT_APP_KEY);
-
+  console.log('tryna fetch', process.env.REACT_APP_KEY);
   const apiKey = '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';
   const endpoint = 'https://api.openai.com/v1/engines/davinci/completions';
   const prompt = `The following is a conversation with an AI assistant called "Bot" that can have meaningful conversations with users. The assistant is helpful, empathic, and friendly. Its objective is to make the user feel better by feeling heard. With each response, the AI assisstant prompts the user to continue the conversation in a natural way. The assistant advices instead of asking too many question and makes the user feel better
@@ -50,7 +48,7 @@ Bot: Hello, I am your personal mental health AI assistant`;
     max_tokens: 100,
     temperature: 0.6,
   });
-
+  console.log(completion.data);
   if (typeof completion.data.choices[0].text == 'string') {
     return completion.data.choices[0].text.replace('Bot: ', '').replace('/n','');}
   else {
