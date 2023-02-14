@@ -24,16 +24,7 @@ const selector = (state: {
   setCurrentPage: state.setCurrentPage,
 });
 
-const emily = new User({
-  id: '1',
-  presence: new Presence({ status: UserStatus.Available, description: '' }),
-  firstName: '',
-  lastName: '',
-  username: 'emily',
-  email: '',
-  avatar: '',
-  bio: '',
-});
+
 
 export const Controller = () => {
   const { userName, currentPage } = useStore(selector, shallow);
@@ -73,7 +64,7 @@ function App() {
       </Container>
       {currentPage === 'signUp' ? null :
       <Paper
-        sx={{ position: 'fixed', bottom: 1, left: 0, right: 0 }}
+        sx={{ position: 'fixed', bottom: 10, left: 0, right: 0 }}
         elevation={3}
       >
         <BottomNavigation
