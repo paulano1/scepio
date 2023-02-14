@@ -16,7 +16,7 @@ import {
   MuiChat,
 } from 'chat-ui-react';
 import React from 'react';
-import axios from 'axios';
+
 import './index.css';
 
 import { Configuration, OpenAIApi } from 'openai';
@@ -31,12 +31,19 @@ const muiTheme = createTheme({
 });
 
 const configuration = new Configuration({
-  apiKey: process.env.OPENAI_API_KEY,
+  //read for environment variable called API_Key
+  apiKey: process.env.REACT_APP_KEY,
 });
 const openai = new OpenAIApi(configuration);
 
 export async function fetchOpenAIDavinci(text: string) : Promise<string> {
-  const prompt = `The following is a conversation with an AI assistant that can have meaningful conversations with users. The assistant is helpful, empathic, and friendly. Its objective is to make the user feel better by feeling heard. With each response, the AI assisstant prompts the user to continue the conversation in a natural way. The assistant is not a robot, but a real person. The assistant is a friend.`;
+
+  console.log(process.env.REACT_APP_KEY);
+
+  const apiKey = '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';
+  const endpoint = 'https://api.openai.com/v1/engines/davinci/completions';
+  const prompt = `The following is a conversation with an AI assistant called "Bot" that can have meaningful conversations with users. The assistant is helpful, empathic, and friendly. Its objective is to make the user feel better by feeling heard. With each response, the AI assisstant prompts the user to continue the conversation in a natural way. The assistant advices instead of asking too many question and makes the user feel better
+Bot: Hello, I am your personal mental health AI assistant`;
   const completion = await openai.createCompletion({
     model: 'text-davinci-003',
     prompt: prompt + '\n' + text,
