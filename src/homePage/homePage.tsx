@@ -2,7 +2,7 @@ import * as React from 'react';
 import Avatar from '@mui/material/Avatar';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { AppBar, BottomNavigation, BottomNavigationAction, Grid, IconButton, Paper, Stack, Typography } from '@mui/material';
+import { AppBar, BottomNavigation, BottomNavigationAction, Button, Card, CardActions, CardContent, CardMedia, Grid, IconButton, Paper, Stack, Typography } from '@mui/material';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import RestoreIcon from '@mui/icons-material/Restore';
@@ -244,6 +244,88 @@ export function HomePage() {
               </Grid>
             </Box>
           </Paper>
+
+          <Card sx={{ maxWidth: '100%', borderRadius: '20px', marginTop: 2 }}>
+            <CardMedia
+              sx={{ height: 140 }}
+              image='https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.hhs.gov%2Fopioids%2Fstatistics%2Findex.html&psig=AOvVaw15xnxbREXkZUnb21IusaHV&ust=1676844237776000&source=images&cd=vfe&ved=0CA8QjRxqFwoTCJDK3NqJoP0CFQAAAAAdAAAAABAE'
+              title='green iguana'
+            />
+            <CardContent>
+              <Typography
+                gutterBottom
+                variant='h5'
+                component='div'
+              >
+                Lizard
+              </Typography>
+              <Typography
+                variant='body2'
+                color='text.secondary'
+              >
+                Lizards are a widespread group of squamate reptiles, with over
+                6,000 species, ranging across all continents except Antarctica
+              </Typography>
+            </CardContent>
+            <CardActions>
+              <Button size='small'>Share</Button>
+              <Button size='small'>Learn More</Button>
+            </CardActions>
+          </Card>
+          <Card sx={{ maxWidth: '100%', borderRadius: '20px', marginTop: 2 }}>
+            <CardMedia
+              sx={{ height: 140 }}
+              image='https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.hhs.gov%2Fopioids%2Fstatistics%2Findex.html&psig=AOvVaw15xnxbREXkZUnb21IusaHV&ust=1676844237776000&source=images&cd=vfe&ved=0CA8QjRxqFwoTCJDK3NqJoP0CFQAAAAAdAAAAABAE'
+              title='green iguana'
+            />
+            <CardContent>
+              <Typography
+                gutterBottom
+                variant='h5'
+                component='div'
+              >
+                Lizard
+              </Typography>
+              <Typography
+                variant='body2'
+                color='text.secondary'
+              >
+                Lizards are a widespread group of squamate reptiles, with over
+                6,000 species, ranging across all continents except Antarctica
+              </Typography>
+            </CardContent>
+            <CardActions>
+              <Button size='small'>Share</Button>
+              <Button size='small'>Learn More</Button>
+            </CardActions>
+          </Card>
+          <Card sx={{ maxWidth: '100%', borderRadius: '20px', marginTop: 2 }}>
+            <CardMedia
+              sx={{ height: 140 }}
+              image='https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.hhs.gov%2Fopioids%2Fstatistics%2Findex.html&psig=AOvVaw15xnxbREXkZUnb21IusaHV&ust=1676844237776000&source=images&cd=vfe&ved=0CA8QjRxqFwoTCJDK3NqJoP0CFQAAAAAdAAAAABAE'
+              title='green iguana'
+            />
+            <CardContent>
+              <Typography
+                gutterBottom
+                variant='h5'
+                component='div'
+              >
+                Lizard
+              </Typography>
+              <Typography
+                variant='body2'
+                color='text.secondary'
+              >
+                Lizards are a widespread group of squamate reptiles, with over
+                6,000 species, ranging across all continents except Antarctica
+              </Typography>
+            </CardContent>
+            <CardActions>
+              <Button size='small'>Share</Button>
+              <Button size='small'>Learn More</Button>
+            </CardActions>
+          </Card>
         </Stack>
       </Container>
     </ThemeProvider>
