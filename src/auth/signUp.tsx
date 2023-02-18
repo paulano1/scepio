@@ -93,24 +93,30 @@ export function SignUp() {
       <Container
         component='main'
         maxWidth='xs'
+        sx={{
+          backgroundImage: 'url(https://i.ibb.co/sWFNCcJ/Onboarding.png)',
+          backgroundRepeat: 'no-repeat',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          height: '100%',
+          width: '100%',
+        }}
       >
         {errorMsg && <Alert severity='error'>{errorMsg}</Alert>}
         <CssBaseline />
-        
-
         <Box
           sx={{
-            marginTop: 40,
+            marginTop: 70,
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
           }}
         >
-          
           <GoogleButton onClick={handleGoogleSignUp}>
             Register with google
           </GoogleButton>
         </Box>
+
         <Copyright sx={{ mt: 8, mb: 4 }} />
       </Container>
     </ThemeProvider>
