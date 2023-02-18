@@ -98,7 +98,7 @@ export function SignUp() {
           backgroundRepeat: 'no-repeat',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
-          height: '100%',
+          height: '100vh',
           width: '100%',
         }}
       >
