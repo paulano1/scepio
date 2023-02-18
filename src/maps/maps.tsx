@@ -104,8 +104,8 @@ interface SimpleMapProps {
 }
 
 const SimpleMap: React.FC<SimpleMapProps> = ({
-  center = { lat: 59.95, lng: 30.33 },
-  zoom = 11
+  center = { lat: 45.95, lng: -100.33 },
+  zoom = 6
 }) => {
   const [geoJSON, setGeoJSON] = React.useState<any[]>([]);
   useEffect(() => {
@@ -149,7 +149,7 @@ const SimpleMap: React.FC<SimpleMapProps> = ({
          <Stack>
            <Box
              sx={{
-               height: '70em',
+               height: '60em',
                width: '100%',
                display: 'flex',
                justifyContent: 'center',
@@ -161,8 +161,8 @@ const SimpleMap: React.FC<SimpleMapProps> = ({
            <ImgMediaCard></ImgMediaCard>
            <Box
              sx={{
-               width: 300,
-               height: 300,
+               width: 400,
+               height: 150,
                backgroundColor: 'primary.dark',
                '&:hover': {
                  backgroundColor: 'primary.main',

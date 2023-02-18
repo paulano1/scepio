@@ -16,11 +16,6 @@ export const HomePageQuestion = ({open, setOpen} : HomePageQuestionProps) => {
   };
   return (
     <>
-      <Slide
-        direction='left'
-        in={open}
-        unmountOnExit
-      >
         <Paper
           sx={{
             borderRadius: '20px',
@@ -219,7 +214,6 @@ export const HomePageQuestion = ({open, setOpen} : HomePageQuestionProps) => {
             </button>
           </Box>
         </Paper>
-      </Slide>
     </>
   );
 };
