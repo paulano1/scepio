@@ -56,8 +56,8 @@ export const HomePageQuestion = ({open, setOpen} : HomePageQuestionProps) => {
               alignItems: 'center',
               justifyContent: 'space-between',
               marginTop: 2,
-              marginLeft: 5,
-              marginRight: 5,
+              marginLeft: 2,
+              marginRight: 2,
               marginBottom: 0,
             }}
           >
