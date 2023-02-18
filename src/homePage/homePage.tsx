@@ -2,7 +2,7 @@ import * as React from 'react';
 import Avatar from '@mui/material/Avatar';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { AppBar, BottomNavigation, BottomNavigationAction, IconButton, Typography } from '@mui/material';
+import { AppBar, BottomNavigation, BottomNavigationAction, Grid, IconButton, Paper, Stack, Typography } from '@mui/material';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import RestoreIcon from '@mui/icons-material/Restore';
@@ -36,7 +36,7 @@ const theme = createTheme({
 export function HomePage() {
   const [value, setValue] = React.useState(0);
   const { setCurrentPage, userName } = useStore(selector, shallow);
-
+  const [showQuestion, setShowQuestion] = React.useState(true);
   return (
     <ThemeProvider theme={theme}>
       <Container
@@ -76,8 +76,53 @@ export function HomePage() {
           ></Avatar>
         </Box>
 
-        <HomePageQuestion />
-        <ProgressCircle />
+        {showQuestion ? (
+          <HomePageQuestion
+            open={showQuestion}
+            setOpen={setShowQuestion}
+          />
+        ) : null}
+        <Stack>
+          <Grid
+            container
+            spacing={2}
+          >
+            <Grid
+              item
+              xs={12}
+              sm={6}
+            >
+              <Paper
+                sx={{
+                  display: 'flex',
+                  marginTop: 2,
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  borderRadius: '20px',
+                  backgroundColor: '#FAD3B0',
+                }}
+                elevation={3}
+              >
+                <Box>
+                  <Typography
+                    sx={{
+                      fontFamily: 'Alegreya',
+                      fontSize: '20px',
+                      fontWeight: 'bold',
+                      marginBottom: 0,
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      display: 'flex',
+                    }}
+                  >
+                    SORC Score
+                  </Typography>
+                  <ProgressCircle progress={20} />
+                </Box>
+              </Paper>
+            </Grid>
+          </Grid>
+        </Stack>
       </Container>
     </ThemeProvider>
   );

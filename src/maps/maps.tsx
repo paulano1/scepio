@@ -1,9 +1,9 @@
 
 
-import React, { useEffect, useMemo } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import GoogleMapReact from "google-map-react";
-import { Box, Container, Stack } from "@mui/system";
-import { Paper } from "@mui/material";
+import {  Container, Stack } from "@mui/system";
+import { CardHeader, Grid, IconButton, Paper } from "@mui/material";
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
@@ -12,13 +12,19 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Slide from '@mui/material/Slide';
 import { TransitionProps } from '@mui/material/transitions';
-
+import PhotoCameraIcon from '@mui/icons-material/PhotoCamera';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 
 import Typography from '@mui/material/Typography';
+import PhotoCamera from "@mui/icons-material/PhotoCamera";
+
+import FormControl, { useFormControl } from '@mui/material/FormControl';
+import OutlinedInput from '@mui/material/OutlinedInput';
+import Box from '@mui/material/Box';
+import FormHelperText from '@mui/material/FormHelperText';
 
 interface AnyReactComponentProps {
   lat: number;
@@ -170,66 +176,55 @@ const SimpleMap: React.FC<SimpleMapProps> = ({
    );
 };
 
-
+export default SimpleMap;
 
 export function ImgMediaCard() {
+  const [file, setFile] = useState<any>();
+  const[ open , setOpen ] = useState ( false ) ;
+  function handleChange(event: any) {
+    const reader = new FileReader();
+    if (event.target.files[0]) {
+      reader.readAsDataURL(event.target.files[0]);
+    }
+    reader.onload = () => {
+      if (reader.result) {
+        console.log(reader.result);
+        setFile(reader.result);
+      }
+    }
+    
+  }
   return (
-    <Card sx={{ maxWidth: 345 }}>
-      <CardMedia
-        component='img'
-        alt='green iguana'
-        height='140'
-        image='/static/images/cards/contemplative-reptile.jpg'
-      />
-      <CardContent>
-        <Typography
-          gutterBottom
-          variant='h5'
-          component='div'
-        >
-          Lizard
-        </Typography>
-        <Typography
-          variant='body2'
-          color='text.secondary'
-        >
-          Lizards are a widespread group of squamate reptiles, with over 6,000
-          species, ranging across all continents except Antarctica
-        </Typography>
-      </CardContent>
-      <CardActions>
-        <Button size='small'>Share</Button>
-        <Button size='small'>Learn More</Button>
-      </CardActions>
-    </Card>
+    <><AlertDialog visible={open}
+    ></AlertDialog>
+    </>
   );
 }
 
 
-
-
-const Transition = React.forwardRef(function Transition(
-  props: TransitionProps & {
-    children: React.ReactElement<any, any>;
-  },
-  ref: React.Ref<unknown>
-) {
-  return (
-    <Slide
-      direction='up'
-      ref={ref}
-      {...props}
-    />
-  );
-});
-
-interface AlertDialogSlideProps {
+interface AlertDialogProps {
   visible: boolean;
-  coordinates: any;
 }
-
-export function AlertDialogSlide({ visible, coordinates }: AlertDialogSlideProps) {
+export function AlertDialog(
+  {
+    visible
+  }
+    : AlertDialogProps
+) {
   const [open, setOpen] = React.useState(visible);
+  const [file, setFile] = useState<any>();
+  function handleChange(event: any) {
+    const reader = new FileReader();
+    if (event.target.files[0]) {
+      reader.readAsDataURL(event.target.files[0]);
+    }
+    reader.onload = () => {
+      if (reader.result) {
+        console.log(reader.result);
+        setFile(reader.result);
+      }
+    };
+  }
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -245,29 +240,82 @@ export function AlertDialogSlide({ visible, coordinates }: AlertDialogSlideProps
         variant='outlined'
         onClick={handleClickOpen}
       >
-        Slide in alert dialog
+        Upload your Narcan details
       </Button>
       <Dialog
         open={open}
-        TransitionComponent={Transition}
-        keepMounted
         onClose={handleClose}
-        aria-describedby='alert-dialog-slide-description'
+        aria-labelledby='alert-dialog-title'
+        aria-describedby='alert-dialog-description'
       >
-        <DialogTitle>{"Use Google's location service?"}</DialogTitle>
+        <DialogTitle id='alert-dialog-title'>
+          {'Enter the details of your Narcan'}
+        </DialogTitle>
         <DialogContent>
-          <DialogContentText id='alert-dialog-slide-description'>
-            Let Google help apps determine location. This means sending
-            anonymous location data to Google, even when no apps are running.
-          </DialogContentText>
+          <Stack>
+            <FormHelperText>
+              {'Enter the address of your narcan'}
+            </FormHelperText>
+            <OutlinedInput placeholder='Location' />
+            <FormHelperText>{'Enter your name'}</FormHelperText>
+            <OutlinedInput placeholder='Name' />
+            <FormHelperText>{'Enter the phone number'}</FormHelperText>
+            <OutlinedInput placeholder='Phone number' />
+            <FormHelperText>{'Upload the photo of your narcan'}</FormHelperText>
+            <Button
+              variant='contained'
+              component='label'
+            >
+              Upload
+              <input
+                hidden
+                accept='image/*'
+                multiple
+                type='file'
+                onChange={handleChange}
+              />
+            </Button>
+          </Stack>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose}>Disagree</Button>
-          <Button onClick={handleClose}>Agree</Button>
+          <Button onClick={handleClose}>Cancel</Button>
+          <Button
+            onClick={handleClose}
+            autoFocus
+          >
+            Submit
+          </Button>
         </DialogActions>
       </Dialog>
     </div>
   );
 }
 
-export default SimpleMap;
+function MyFormHelperText() {
+  const { focused } = useFormControl() || {};
+
+  const helperText = React.useMemo(() => {
+    if (focused) {
+      return 'This field is being focused';
+    }
+
+    return 'Helper text';
+  }, [focused]);
+
+  return <FormHelperText>{helperText}</FormHelperText>;
+}
+
+// export default function UseFormControl() {
+//   return (
+//     <Box
+//       component='form'
+//       noValidate
+//       autoComplete='off'
+//     >
+//       <FormControl sx={{ width: '25ch' }}>
+//         <OutlinedInput placeholder='Please enter text' />
+//         <MyFormHelperText />
+//       </FormControl>
+//     </Box>
+//   );
+// }
