@@ -40,8 +40,8 @@ export const HomePageQuestion = ({open, setOpen} : HomePageQuestionProps) => {
           >
             <div
               style={{
-                marginTop: 20,
-                marginLeft: 20,
+                marginTop: 10,
+                marginLeft: 10,
                 fontFamily: 'Alegreya',
                 fontSize: '20px',
               }}
