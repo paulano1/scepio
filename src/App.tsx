@@ -5,7 +5,6 @@ import { shallow } from 'zustand/shallow';
 import { HomePage } from './homePage';
 import { ChatUI } from './chat';
 import './App.css';
-import { Presence, User, UserStatus } from '@chatscope/use-chat';
 import { Container } from '@mui/system';
 import { BottomNavigation, BottomNavigationAction, Paper } from '@mui/material';
 import ForumIcon from '@mui/icons-material/Forum';
@@ -15,9 +14,9 @@ import LocationOnIcon from '@mui/icons-material/LocationOn';
 
 
 const selector = (state: {
-  userName: any; signedIn: any; setSignedIn: any; currentPage: any; setCurrentPage: any; 
+signedIn: any; setSignedIn: any; currentPage: any; setCurrentPage: any; 
 }) => ({
-  userName: state.userName,
+ 
   signedIn: state.signedIn,
   setSignedIn : state.setSignedIn,
   currentPage: state.currentPage,
@@ -27,7 +26,7 @@ const selector = (state: {
 
 
 export const Controller = () => {
-  const { userName, currentPage } = useStore(selector, shallow);
+  const {  currentPage } = useStore(selector, shallow);
   switch (currentPage) {
     case 'signUp':
       return <SignUp />;

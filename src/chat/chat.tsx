@@ -1,18 +1,12 @@
 import {
   Box,
-  Button,
   CssBaseline,
   Divider,
-  Link,
   ThemeProvider,
-  Typography,
   createTheme,
 } from '@mui/material';
 import {
-  ActionRequest,
-  AudioActionResponse,
   ChatController,
-  FileActionResponse,
   MuiChat,
 } from 'chat-ui-react';
 import React from 'react';
@@ -30,36 +24,46 @@ const muiTheme = createTheme({
   },
 });
 
-const configuration = new Configuration({
-  //read for environment variable called API_Key
-  apiKey: process.env.REACT_APP_KEY,
-});
-const openai = new OpenAIApi(configuration);
+async function OpenaiFetchAPI(Prompt : string) {
+
+  console.log('Calling GPT3');
+  console.log('prompt', prompt);
+  var url = 'https://api.openai.com/v1/engines/davinci/completions';
+  var bearer =
+    'Bearer ' + process.env.REACT_APP_KEY;
+  const data = await fetch(
+        `https://api.openai.com/v1/completions`,
+        {
+            body: JSON.stringify({"model": "text-davinci-003", "prompt": Prompt, "temperature": 0, "max_tokens": 100}),
+            method: "POST",
+            headers: {
+                "content-type": "application/json",
+                Authorization: bearer,
+            },
+                }
+    )
+  return data.json(); 
+}
 
 export async function fetchOpenAIDavinci(text: string) : Promise<string> {
   console.log('tryna fetch', process.env.REACT_APP_KEY);
-  const prompt = `The following is a conversation with an AI assistant called "Bot" that can have meaningful conversations with users. The assistant is helpful, empathic, and friendly. Its objective is to make the user feel better by feeling heard. With each response, the AI assisstant prompts the user to continue the conversation in a natural way. The assistant advices instead of asking too many question and makes the user feel better
-Bot: Hello, I am your personal mental health AI assistant`;
-  const completion = await openai.createCompletion({
-    model: 'text-davinci-003',
-    prompt: prompt + '\n' + text,
-    max_tokens: 100,
-    temperature: 0.6,
-  });
-  console.log(completion.data);
-  if (typeof completion.data.choices[0].text == 'string') {
-    return completion.data.choices[0].text.replace('Bot: ', '').replace('/n','');}
+  const prompt = `The following is a conversation with an AI assistant that can have meaningful conversations with users. The assistant is helpful, empathic, and friendly. Its objective is to make the user feel better by feeling heard. With each response, the AI assisstant prompts the user to continue the conversation in a natural way.
+Therapist: Hello, I am your personal mental health AI assistant`;
+
+  const data  = await OpenaiFetchAPI(prompt + '\n' + text + '\nTherapist: ');
+  if (typeof data.choices[0].text == 'string') {
+    return data.choices[0].text.replace('Therapist: ', '').replace('/n','');}
   else {
-  return '';
-  }
+
+return '';
 }
-const selector = (state: { setCurrentPage: any; userName: any }) => ({
-  setCurrentPage: state.setCurrentPage,
+}
+const selector = (state: { userName: any }) => ({
   userName: state.userName,
 });
 
 export function ChatUI(): React.ReactElement {
-  const { setCurrentPage, userName } = useStore(selector, shallow);
+  const { userName } = useStore(selector, shallow);
   const [chatCtl] = React.useState(
     new ChatController({
       showDateTime: true,
@@ -79,7 +83,7 @@ export function ChatUI(): React.ReactElement {
       avatar: '-',
     });
     echo(chatCtl);
-  }, [chatCtl]);
+  }, [chatCtl, userName]);
 
   return (
     <ThemeProvider theme={muiTheme}>
@@ -113,7 +117,7 @@ async function getMessages(chatCtl: ChatController): Promise<string> {
     if (msg.self) {
       request += 'You: ' + msg.content + '\n';
     } else {
-      request += 'Bot: ' + msg.content + '\n';
+      request += 'Therapist: ' + msg.content + '\n';
     }
   });
   return await fetchOpenAIDavinci(request);
@@ -123,6 +127,7 @@ async function getMessages(chatCtl: ChatController): Promise<string> {
 async function echo(chatCtl: ChatController): Promise<void> {
   
   
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const text = await chatCtl.setActionRequest({
     type: 'text',
   });
