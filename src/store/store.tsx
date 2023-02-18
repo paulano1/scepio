@@ -17,7 +17,7 @@ export const useStore = create<AppState>((set, get) => ({
   setSignedIn: (signedIn: boolean) => set({ signedIn }),
   userName: '',
   setUserName: (userName: string) => set({ userName }),
-  currentPage: 'signUp',
+  currentPage: 'maps',
   setCurrentPage: (currentPage: string) => set({ currentPage }),
   userEmailAddress: '',
   setUserEmailAddress: (userEmailAddress: string) => set({ userEmailAddress }),

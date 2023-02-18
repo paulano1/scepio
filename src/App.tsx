@@ -11,6 +11,7 @@ import ForumIcon from '@mui/icons-material/Forum';
 import HomeIcon from '@mui/icons-material/Home';
 import MonitorHeartIcon from '@mui/icons-material/MonitorHeart';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
+import SimpleMap from './maps/maps';
 
 
 const selector = (state: {
@@ -34,6 +35,8 @@ export const Controller = () => {
       return <HomePage />;
     case 'chat':
       return <ChatUI />;
+    case 'maps':
+      return <SimpleMap />;
     default:
       return <div>404</div>;
   }
@@ -96,9 +99,9 @@ function App() {
             icon={<ForumIcon />}
           />
           <BottomNavigationAction
-            label='Nearby'
+            label='maps'
             onClick={() => {
-              setCurrentPage('nearby');
+              setCurrentPage('maps');
             }}
             icon={<LocationOnIcon />}
           />
@@ -107,6 +110,11 @@ function App() {
 }
     </>
   );
+// return (
+//   <>
+//    <SimpleMap />
+//   </>
+// )
 }
 
 export default App;
