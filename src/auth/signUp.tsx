@@ -98,8 +98,11 @@ export function SignUp() {
           backgroundRepeat: 'no-repeat',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
-          height: '100vh',
-          width: '100%',
+          position:'absolute',
+          top:'0px',
+          right:'0px',
+          bottom:'0px',
+          left:'0px',
         }}
       >
         {errorMsg && <Alert severity='error'>{errorMsg}</Alert>}
