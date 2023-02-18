@@ -26,6 +26,7 @@
     "chat-ui-react": "^0.3.0",
     "firebase": "^9.17.1",
     "google-map-react": "^2.2.0",
+    "google-maps-react-markers": "^1.1.4",
     "openai": "^3.1.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
