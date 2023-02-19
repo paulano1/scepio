@@ -3,24 +3,13 @@
 import React, { useEffect, useMemo, useState } from "react";
 import GoogleMapReact from "google-map-react";
 import {  Container, Stack } from "@mui/system";
-import { CardHeader, Grid, IconButton, Paper } from "@mui/material";
+import { CardHeader, CircularProgress, Grid, IconButton, Paper, Typography } from "@mui/material";
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-import Slide from '@mui/material/Slide';
-import { TransitionProps } from '@mui/material/transitions';
-import PhotoCameraIcon from '@mui/icons-material/PhotoCamera';
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-
-import Typography from '@mui/material/Typography';
-import PhotoCamera from "@mui/icons-material/PhotoCamera";
-
 import FormControl, { useFormControl } from '@mui/material/FormControl';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import Box from '@mui/material/Box';
@@ -192,6 +181,7 @@ export function ImgMediaCard() {
         setFile(reader.result);
       }
     }
+
     
   }
   return (
@@ -201,6 +191,7 @@ export function ImgMediaCard() {
   );
 }
 
+const apiKEY = 'eyJhbGciOiJSUzI1NiIsImtpZCI6IjU5NjJlN2EwNTljN2Y1YzBjMGQ1NmNiYWQ1MWZlNjRjZWVjYTY3YzYiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJhY2NvdW50cy5nb29nbGUuY29tIiwiYXpwIjoiNjE4MTA0NzA4MDU0LTlyOXMxYzRhbGczNmVybGl1Y2hvOXQ1Mm4zMm42ZGdxLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwiYXVkIjoiNjE4MTA0NzA4MDU0LTlyOXMxYzRhbGczNmVybGl1Y2hvOXQ1Mm4zMm42ZGdxLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwic3ViIjoiMTA5OTE2ODU0NzMxMzA3NjQxMTU0IiwiZW1haWwiOiJhbGV4dG9rZXJlbmtvQGdtYWlsLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJhdF9oYXNoIjoiWXptVkNscWxaNkNlMVItakpJY0h2USIsImlhdCI6MTY3Njc4MDkzNiwiZXhwIjoxNjc2Nzg0NTM2LCJqdGkiOiJiMGE5YTc5YjY5MDBhNjNjNjYyYWRlZGFiMmUyYzdiMmVjOWNjNmU1In0.iIpPYZ786YIM0tsK7Ej8aAm5rxjOaDpqIOf9i2WjyrlRzDO5Nv9XM7kvTXW4koPDoQS0g4N1uZzGEt89HtebW9AgEk9HCeUJprEkZvnAweq5JOKIWDTnMOp2ThCkNtFdNIzFm46jquOAZ_bFTgiriyOgpbgePFXVcgz9QhGXBl7x0EsSMbgJpBkQ4mxhCfMWg3-mPmcy5dBd_1CT353fKvwbgWgCydKCYqFoVn255CMUiU4CTsTirsnYLQWqd4af2eCNmYDM7TXbLEoa1R5tFoIkwa4kzFI5uHjnn9Z17Vwa5RDrAbcp2_vU5XC8iZBQlAiqDbhughPPr6niIV-SRA'
 
 interface AlertDialogProps {
   visible: boolean;
@@ -213,7 +204,24 @@ export function AlertDialog(
 ) {
   const [open, setOpen] = React.useState(visible);
   const [file, setFile] = useState<any>();
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
+
+  
   function handleChange(event: any) {
+    async function name(img:string) {
+    const response = await fetch("https://us-central1-scepio.cloudfunctions.net/narcan", {
+      body: JSON.stringify({"img": "exampleBase64String"}),
+  headers: {
+    Authorization: `bearer ${apiKEY}`,
+    "Content-Type": "application/json"
+  },
+  method: "POST"
+})
+    const data = await response.json()
+    console.log(data)
+  }
+    setLoading(true);
     const reader = new FileReader();
     if (event.target.files[0]) {
       reader.readAsDataURL(event.target.files[0]);
@@ -223,8 +231,14 @@ export function AlertDialog(
         console.log(reader.result);
         setFile(reader.result);
       }
+      
     };
+    name('exampleBase64String').then(() => {
+      setLoading(false);
+    });
+    
   }
+    
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -262,6 +276,13 @@ export function AlertDialog(
             <FormHelperText>{'Enter the phone number'}</FormHelperText>
             <OutlinedInput placeholder='Phone number' />
             <FormHelperText>{'Upload the photo of your narcan'}</FormHelperText>
+            {loading ? (
+              <CircularProgress />
+            ) : ( <Box>
+              <Typography>
+                {error}
+              </Typography>
+            </Box>)}
             <Button
               variant='contained'
               component='label'
@@ -275,6 +296,7 @@ export function AlertDialog(
                 onChange={handleChange}
               />
             </Button>
+            
           </Stack>
         </DialogContent>
         <DialogActions>
@@ -290,32 +312,3 @@ export function AlertDialog(
     </div>
   );
 }
-
-function MyFormHelperText() {
-  const { focused } = useFormControl() || {};
-
-  const helperText = React.useMemo(() => {
-    if (focused) {
-      return 'This field is being focused';
-    }
-
-    return 'Helper text';
-  }, [focused]);
-
-  return <FormHelperText>{helperText}</FormHelperText>;
-}
-
-// export default function UseFormControl() {
-//   return (
-//     <Box
-//       component='form'
-//       noValidate
-//       autoComplete='off'
-//     >
-//       <FormControl sx={{ width: '25ch' }}>
-//         <OutlinedInput placeholder='Please enter text' />
-//         <MyFormHelperText />
-//       </FormControl>
-//     </Box>
-//   );
-// }

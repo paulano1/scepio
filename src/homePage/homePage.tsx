@@ -64,7 +64,7 @@ export function HomePage() {
               fontSize: '25px',
             }}
           >
-            Welcome back, {userName}!
+            Welcome, {userName}!
           </div>
           <Avatar
             sx={{
