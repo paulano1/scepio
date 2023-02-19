@@ -14,6 +14,7 @@ import FormControl, { useFormControl } from '@mui/material/FormControl';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import Box from '@mui/material/Box';
 import FormHelperText from '@mui/material/FormHelperText';
+import { FetchData } from "./data";
 
 interface AnyReactComponentProps {
   lat: number;
@@ -80,7 +81,7 @@ async function fetchGeoJSON() {
     features.push(feature)
   }
   )
-  return features
+  return features.slice(0, 100);
 }
 
 
@@ -128,7 +129,7 @@ const SimpleMap: React.FC<SimpleMapProps> = ({
      <>
        <Container
          sx={{
-           height: '100%',
+           height: '95%',
            width: '100%',
            display: 'flex',
            justifyContent: 'center',
@@ -233,12 +234,24 @@ export function AlertDialog(
       }
       
     };
-    name('exampleBase64String').then(() => {
-      setLoading(false);
-    });
+    
     
   }
-    
+  useEffect(() => {
+    const check = async () => {
+      if (file) {
+        const response = await FetchData(file);
+        console.log(response);
+        setLoading(false);
+        setError('Narcan Detected');
+      }
+    };
+    check().catch((err) => {
+      setLoading(false);
+      setError('Narcan not detected but it will be verified by an admin');
+    });
+  }, [file]);
+  
 
   const handleClickOpen = () => {
     setOpen(true);
