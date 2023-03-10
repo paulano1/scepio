@@ -184,7 +184,7 @@ export const MedicationCard = () => {
               sx={{
                 marginTop: 1,
                 fontFamily: 'Poppins',
-                fontSize: '1.2rem',
+                fontSize: '1rem',
                 fontWeight: 'bold',
               }}
             >
@@ -194,7 +194,7 @@ export const MedicationCard = () => {
               sx={{
                 marginTop: 0.75,
                 fontFamily: 'Poppins',
-                fontSize: '1.2rem',
+                fontSize: '1rem',
                 fontWeight: 'bold',
                 color: '#9B9B9B',
               }}
@@ -214,6 +214,7 @@ export const MedicationCard = () => {
                 fontWeight: 'bold',
                 color: '#9B9B9B',
                 marginLeft: 2.5,
+                marginRight: 2.5,
               }}
             >
               {status}
