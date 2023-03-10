@@ -13,11 +13,11 @@ export type AppState = {
 
 // this is our useStore hook that we can use in our components to get parts of the store and call actions
 export const useStore = create<AppState>((set, get) => ({
-  signedIn: false,
+  signedIn: true,
   setSignedIn: (signedIn: boolean) => set({ signedIn }),
   userName: '',
   setUserName: (userName: string) => set({ userName }),
-  currentPage: 'signUp',
+  currentPage: 'health',
   setCurrentPage: (currentPage: string) => set({ currentPage }),
   userEmailAddress: '',
   setUserEmailAddress: (userEmailAddress: string) => set({ userEmailAddress }),
