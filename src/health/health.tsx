@@ -243,11 +243,11 @@ const LengthOfMedication = () => {
                         marginTop: 2,
                         marginLeft: 2,
                         fontFamily: 'Poppins',
-                        fontSize: '1rem',
+                        fontSize: '0.8rem',
                         fontWeight: 'bold',
                       }}
                     >
-                      Mg
+                      mg
                     </Box>
                   </Grid>
                 </Grid>
@@ -359,7 +359,7 @@ const FoodnPills = () => {
             <Box class-name='FoodnPills'>
               <Grid
                 container
-                spacing={2}
+                spacing={3}
               >
                 <Grid
                   item
