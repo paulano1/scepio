@@ -39,9 +39,7 @@ export const Controller = () => {
     case 'maps':
       return <SimpleMap />;
     default:
-      return (
-        <Health />
-      );
+      return <Health />;
   }
 };
 
