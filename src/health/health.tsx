@@ -24,11 +24,12 @@ const AddMedicine = () => {
             sx={{
               display: 'flex',
               marginTop: 2,
-              borderRadius: '20px',
+              borderRadius: '5px',
               backgroundColor: '#F8F8F6',
-              width: '75vw',
-              height: '10vw',
+              width: '100%',
+              height: '75px',
             }}
+            elevation={0}
           >
             <Box
               sx={{
@@ -48,8 +49,8 @@ const AddMedicine = () => {
                 >
                   <Box
                     sx={{
-                      marginTop: '1.5vw',
-                      marginLeft: '1.5vw',
+                      marginTop: '1',
+                      marginLeft: '1',
                     }}
                   >
                     <svg
@@ -93,23 +94,29 @@ const AddMedicine = () => {
                   item
                   xs={6}
                 >
-                  <input
-                    type='text'
-                    placeholder='Medication Name'
-                    value={medicationName}
-                    onChange={(e) => setMedicationName(e.target.value)}
-                    style={{
-                      border: '0.5px solid #9B9B9B',
-                      background: '#F8F8F6',
-                      borderRadius: '5px',
-                      fontFamily: 'Poppins',
-                      fontWeight: 'bold',
-                      height: '5vw',
-                      width: '30vw',
-                      textAnchor: 'middle',
-                      textAlign: 'left',
+                  <Box
+                    sx={{
+                      marginTop: '1',
+                      marginLeft: '3',
                     }}
-                  />
+                  >
+                    <input
+                      type='text'
+                      placeholder='Medication Name'
+                      value={medicationName}
+                      onChange={(e) => setMedicationName(e.target.value)}
+                      style={{
+                        border: '0.5px solid #9B9B9B',
+                        background: '#F8F8F6',
+                        borderRadius: '5px',
+                        fontFamily: 'Poppins',
+                        fontWeight: 'bold',
+                        height: '30px',
+                        width: '250px',
+                        marginLeft: '2',
+                      }}
+                    />
+                  </Box>
                 </Grid>
               </Grid>
             </Box>
@@ -122,38 +129,39 @@ const AddMedicine = () => {
 const LengthOfMedication = () => {
   const [numberOfPills, setNumberOfPills] = useState('');
   const [numberOfDays, setNumberOfDays] = useState('');
-  const [selectSchedule, setSelectSchedule] = useState({
-    value: '',
-    label: '',
-  })
+  const [selectSchedule, setSelectSchedule] = useState()
   const options = [
     {
+      value: 0,
+      label: 'Everyday',
+    },
+    {
       value: 1,
-      label: 'Every Sunday',
+      label: 'Sunday',
     },
     {
       value: 2,
-      label: 'Every Monday',
+      label: 'Monday',
     },
     {
       value: 3,
-      label: 'Every Tuesday',
+      label: 'Tuesday',
     },
     {
       value: 4,
-      label: 'Every Wednesday',
+      label: 'Wednesday',
     },
     {
       value: 5,
-      label: 'Every Thursday',
+      label: 'Thursday',
     },
     {
       value: 6,
-      label: 'Every Friday',
+      label: 'Friday',
     },
     {
       value: 6,
-      label: 'Every Sunday',
+      label: 'Saturday',
     },
   ];
   return (
@@ -181,11 +189,12 @@ const LengthOfMedication = () => {
               <Paper
                 sx={{
                   display: 'flex',
-                  borderRadius: '20px',
+                  borderRadius: '5px',
                   backgroundColor: '#F8F8F6',
-                  height: '8vw',
-                  width: '25vw',
+                  height: '60px',
+                  width: '100%',
                 }}
+                elevation={0}
               >
                 <Grid
                   container
@@ -195,26 +204,33 @@ const LengthOfMedication = () => {
                     item
                     xs={7}
                   >
-                    <input
-                      type='number'
-                      placeholder='Number of Pills'
-                      value={numberOfPills}
-                      onChange={(e) => {
-                        if (!/[0-9]/.test(e.target.value)) return;
-                        setNumberOfPills(e.target.value);
-                      }}
-                      style={{
-                        width: '15vw',
-                        height: '4vw',
-                        marginTop: '1.5vw',
-                        marginLeft: '1.5vw',
-                        borderRadius: '5px',
-                        fontFamily: 'Poppins',
-                        fontSize: '1.2rem',
-                        background: '#F8F8F6',
-                        borderWidth: '1px',
-                      }}
-                    />
+                    <Box
+                    sx={{
+                      marginTop: 2,
+                      marginLeft: 1.5,
+                      width: '100%',
+                    }}
+                    >
+                      <input
+                        type='number'
+                        value={numberOfPills}
+                        onChange={(e) => {
+                          if (!/[0-9]/.test(e.target.value)) return;
+                          setNumberOfPills(e.target.value);
+                        }}
+                        style={{
+                          width: '70px',
+                          height: '20px',
+                          marginTop: 1,
+                          marginLeft: 1,
+                          borderRadius: '5px',
+                          fontFamily: 'Poppins',
+                          fontSize: '1.2rem',
+                          background: '#F8F8F6',
+                          borderWidth: '1px',
+                        }}
+                      />
+                    </Box>
                   </Grid>
                   <Grid
                     item
@@ -222,10 +238,10 @@ const LengthOfMedication = () => {
                   >
                     <Box
                       sx={{
-                        marginTop: '2vw',
-                        marginLeft: '3vw',
+                        marginTop: 2,
+                        marginLeft: 1,
                         fontFamily: 'Poppins',
-                        fontSize: '1.2rem',
+                        fontSize: '1rem',
                         fontWeight: 'bold',
                       }}
                     >
@@ -242,11 +258,12 @@ const LengthOfMedication = () => {
               <Paper
                 sx={{
                   display: 'flex',
-                  borderRadius: '20px',
+                  borderRadius: '5px',
                   backgroundColor: '#F8F8F6',
-                  height: '8vw',
-                  width: '50vw',
+                  height: '60px',
+                  width: '100%',
                 }}
+                elevation={0}
               >
                 <Grid
                   container
@@ -258,66 +275,20 @@ const LengthOfMedication = () => {
                   >
                     <Box
                       sx={{
-                        marginTop: '2vw',
-                        marginLeft: '1.5vw',
+                        marginTop: 1.5,
+                        marginLeft: 3,
                         fontFamily: 'Poppins',
+                        width: '150px',
                       }}
                     >
                       <Select
                         options={options}
-                        placeholder='Number of Days'
-                        values={options}
-                        onChange={(e) =>
-                          setNumberOfDays(String(e.values) || '')
-                        }
+                        placeholder='Repeat'
+                        onChange={(e) => setNumberOfDays(String(e.values) || '')}
                         color='#F6BE68'
-                        multi={true}
-                      />
+                        multi={true} values={[]}                      />
                     </Box>
-                  </Grid>
-                  <Grid
-                    item
-                    xs={2}
-                  >
-                    <Box>
-                      <input
-                        type='number'
-                        placeholder='Number of Days'
-                        value={numberOfPills}
-                        onChange={(e) => {
-                          if (!/[0-9]/.test(e.target.value)) return;
-                          setNumberOfPills(e.target.value);
-                        }}
-                        style={{
-                          width: '10vw',
-                          height: '4vw',
-                          marginTop: '1.5vw',
-                          marginLeft: '1.5vw',
-                          borderRadius: '5px',
-                          fontFamily: 'Poppins',
-                          fontSize: '1.2rem',
-                          background: '#F8F8F6',
-                          borderWidth: '1px',
-                        }}
-                      />
-                    </Box>
-                  </Grid>
-                  <Grid
-                    item
-                    xs={2}
-                  >
-                    <Box
-                      sx={{
-                        marginTop: '2vw',
-                        marginLeft: '5vw',
-                        fontFamily: 'Poppins',
-                        fontSize: '1.2rem',
-                        fontWeight: 'bold',
-                      }}
-                    >
-                      Days
-                    </Box>
-                  </Grid>
+                  </Grid> 
                 </Grid>
               </Paper>
             </Grid>
