@@ -213,6 +213,7 @@ const LengthOfMedication = () => {
                         width: '100%',
                       }}
                     >
+                      
                       <input
                         type='number'
                         value={numberOfPills}
@@ -229,7 +230,7 @@ const LengthOfMedication = () => {
                           fontFamily: 'Poppins',
                           fontSize: '1.2rem',
                           background: '#F8F8F6',
-                          borderWidth: '1px',
+                          borderWidth: '0px',
                         }}
                       />
                     </Box>
@@ -241,13 +242,13 @@ const LengthOfMedication = () => {
                     <Box
                       sx={{
                         marginTop: 2,
-                        marginLeft: 2,
                         fontFamily: 'Poppins',
                         fontSize: '0.8rem',
                         fontWeight: 'bold',
+                        textAlign: 'center',
                       }}
                     >
-                      mg
+                      {' mg'}
                     </Box>
                   </Grid>
                 </Grid>
