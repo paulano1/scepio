@@ -3,3 +3,6 @@
 .add-button {
     background-image: url('./backButton.svg')
 }
+.quantity {
+    position: relative;
+}
