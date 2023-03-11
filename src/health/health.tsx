@@ -14,6 +14,7 @@ export const TodaysReview = () => {
           backgroundColor: '#B6B9FF',
           height: '75px',
         }}
+        elevation={0}
       >
         <Box
           sx={{
@@ -52,6 +53,7 @@ export const AddAmedicationTab = ({setPage} : AddAMedicineProps) => {
           backgroundColor: '#B6B9FF',
           height: '75px',
         }}
+        elevation={0}
       >
         <Box
           sx={{
@@ -128,6 +130,7 @@ export const MedicationCard = () => {
           backgroundColor: '#F8F8F6',
           height: '75px',
         }}
+        elevation={0}
       >
         <Grid
           container
@@ -189,7 +192,7 @@ export const MedicationCard = () => {
               sx={{
                 marginTop: 1,
                 fontFamily: 'Poppins',
-                fontSize: '1rem',
+                fontSize: '0.9rem',
                 fontWeight: 'bold',
               }}
             >
@@ -199,7 +202,7 @@ export const MedicationCard = () => {
               sx={{
                 marginTop: 0.75,
                 fontFamily: 'Poppins',
-                fontSize: '1rem',
+                fontSize: '0.9rem',
                 fontWeight: 'bold',
                 color: '#9B9B9B',
               }}

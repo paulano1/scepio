@@ -1,4 +1,4 @@
-import { Stack, Grid, Container, Paper, Box, Button, TextField } from "@mui/material";
+import { Stack, Grid, Container, Paper, Box, Button, TextField, Typography } from "@mui/material";
 import './health.css'
 import { SetStateAction, useEffect, useState } from "react";
 import Select, { SelectProps } from 'react-dropdown-select';
@@ -18,7 +18,7 @@ const AddMedicine = ({setMedicineName, medicineName} : AddAMedicineProps) => {
             sx={{
               marginTop: 3,
               fontFamily: 'Poppins',
-              fontSize: '1.2rem',
+              fontSize: '1rem',
               fontWeight: 'bold',
             }}
           >
@@ -112,7 +112,7 @@ const AddMedicine = ({setMedicineName, medicineName} : AddAMedicineProps) => {
                         setMedicineName(e.target.value);
                       }}
                       style={{
-                        border: '0.5px solid #9B9B9B',
+                        border: '0px solid #9B9B9B',
                         background: '#F8F8F6',
                         borderRadius: '5px',
                         fontFamily: 'Poppins',
@@ -187,10 +187,11 @@ const LengthOfMedication = ({ dosage, setDosage, schedule, setScheduleTmp} : Len
         <Stack spacing={1}>
           <Box
             sx={{
-              marginTop: 1,
+              marginTop: 2,
               fontFamily: 'Poppins',
-              fontSize: '1.2rem',
+              fontSize: '1rem',
               fontWeight: 'bold',
+              marginLeft: 1.5,
             }}
           >
             Length of Medication
@@ -244,7 +245,7 @@ const LengthOfMedication = ({ dosage, setDosage, schedule, setScheduleTmp} : Len
                           marginLeft: 1,
                           borderRadius: '5px',
                           fontFamily: 'Poppins',
-                          fontSize: '1.2rem',
+                          fontSize: '1rem',
                           background: '#F8F8F6',
                           borderWidth: '0px',
                         }}
@@ -370,10 +371,11 @@ const FoodnPills = ({food, setFood} : FoodAndPillsProps) => {
         <Stack spacing={2}>
           <Box
             sx={{
-              marginTop: 1,
+              marginTop: 2,
               fontFamily: 'Poppins',
-              fontSize: '1.2rem',
+              fontSize: '1rem',
               fontWeight: 'bold',
+              marginLeft: 1.5,
             }}
           >
             Food & Pills
@@ -604,19 +606,21 @@ const TimeInput = ({value, setValue} : TimeInputProps) => {
       <Stack spacing={2}>
         <Box
           sx={{
-            marginTop: 1,
+            marginTop: 2,
             fontFamily: 'Poppins',
-            fontSize: '1.2rem',
+            fontSize: '1rem',
             fontWeight: 'bold',
+            marginLeft: -1,
           }}
         >
           Notification
         </Box>
         <Box
-        sx={{
-          backgroundColor: '#F5F5F5',
-          height: '50px',
-        }}
+          sx={{
+            backgroundColor: '#F5F5F5',
+            height: '50px',
+            borderRadius: '10px',
+          }}
         >
           <Grid
             container
@@ -627,10 +631,10 @@ const TimeInput = ({value, setValue} : TimeInputProps) => {
               xs={2}
             >
               <Box
-              sx={{
-                marginTop: '6px',
-                marginLeft: '10px',
-              }}
+                sx={{
+                  marginTop: '6px',
+                  marginLeft: '10px',
+                }}
               >
                 <svg
                   width='32'
@@ -657,15 +661,19 @@ const TimeInput = ({value, setValue} : TimeInputProps) => {
                   </defs>
                 </svg>
               </Box>
-              </Grid>
-              <Grid item xs={2}>
+            </Grid>
+            <Grid
+              item
+              xs={2}
+            >
               <Box>
                 <input
                   type='time'
                   value={value}
                   onChange={(e) => {
                     setValue(e.target.value);
-                    setValue(e.target.value)}}
+                    setValue(e.target.value);
+                  }}
                   style={{
                     background: 'none',
                     fontFamily: 'Poppins',
@@ -674,11 +682,12 @@ const TimeInput = ({value, setValue} : TimeInputProps) => {
                     marginLeft: '10px',
                     width: '200px',
                     marginTop: '10px',
-                    border: '1px solid #9B9B9B',
+                    border: '0px solid #9B9B9B',
+                    borderRadius: '5px',
                   }}
                 />
               </Box>
-              </Grid>
+            </Grid>
           </Grid>
         </Box>
       </Stack>
@@ -774,42 +783,45 @@ export const AddPlan = ({setPage} : AddPlanProps) => {
             </Box>
           </Grid>
         </Grid>
-        <AddMedicine
-          medicineName={medicineName}
-          setMedicineName={setMedicineName}
-        />
-        <LengthOfMedication
-          dosage={dosage}
-          setDosage={setDosage}
-          schedule={frequency}
-          setScheduleTmp={setFrequency}
-        />
-        <FoodnPills
-          food={food}
-          setFood={setFood}
-        />
-        <TimeInput
-          value={notification}
-          setValue={setNotification}
-        />
+        <Box>
+          <AddMedicine
+            medicineName={medicineName}
+            setMedicineName={setMedicineName}
+          />
+          <LengthOfMedication
+            dosage={dosage}
+            setDosage={setDosage}
+            schedule={frequency}
+            setScheduleTmp={setFrequency}
+          />
+          <FoodnPills
+            food={food}
+            setFood={setFood}
+          />
+          <TimeInput
+            value={notification}
+            setValue={setNotification}
+          />
+        </Box>
         <Box
           sx={{
             marginTop: 1,
             height: '50px',
-            textAlign: 'center',
             backgroundColor: '#6B6EAB',
             borderRadius: '10px',
           }}
           onClick={HandleSubmit}
         >
-          <Box
-            sx={{
-              marginTop: '12px',
+          <div
+            style={{
+              marginTop: '10px',
               color: 'white',
+              fontFamily: 'Poppins',
+              textAlign: 'center',
             }}
           >
             Done
-          </Box>
+          </div>
         </Box>
       </Stack>
     </Container>
